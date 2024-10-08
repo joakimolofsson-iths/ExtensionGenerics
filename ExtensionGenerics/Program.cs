@@ -12,24 +12,61 @@ namespace ExtensionGenerics
             myCar.ShowVehicle();
             myBoat.ShowVehicle();
 
-            Console<string, int, string> myConsole = new Console<string, int, string>("Sony", 2020, "PS5");
-            Console<string, string, string> myConsole2 = new Console<string, string, string>("Microsoft", "2020", "Xbox X");
+            Console<string, int, string, int> myConsole = new Console<string, int, string, int>("Sony", 2020, "PS5");
+            Console<string, string, string, string> myConsole2 = new Console<string, string, string, string>("Microsoft", "2020", "Xbox X");
             myConsole.ConsoleInfo();
             myConsole2.ConsoleInfo();
+            myConsole.AddItem(10);
+            myConsole.AddItem(20);
+            myConsole.AddItem(30);
+            myConsole.DisplayItems();
+            myConsole.RemoveItem(20);
+            myConsole.DisplayItems();
         }
     }
 
-    class Console<T1, T2, T3>
+    class Console<T1, T2, T3, T4>
     {
         public T1 Manufacturer;
         public T2 Year;
         public T3 Model;
+
+        private List<T4> items = new List<T4>();
 
         public Console(T1 manufacturer, T2 year, T3 model)
         {
             Manufacturer = manufacturer;
             Year = year;
             Model = model;
+        }
+
+        public void AddItem(T4 item)
+        {
+            items.Add(item);
+            Console.WriteLine($"{item} has been added.");
+        }
+
+        public bool RemoveItem(T4 item)
+        {
+            bool removed = items.Remove(item);
+            if (removed)
+            {
+                Console.WriteLine($"{item} has been removed.");
+            }
+            else
+            {
+                Console.WriteLine($"{item} not found in the collection.");
+            }
+            return removed;
+        }
+
+        public void DisplayItems()
+        {
+            Console.WriteLine("Collection items:");
+            foreach (var item in items)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 
@@ -70,7 +107,7 @@ namespace ExtensionGenerics
             Console.WriteLine($"{vehicle.Manufacturer} {vehicle.Model}");
         }
 
-        public static void ConsoleInfo<T1,T2,T3>(this Console<T1,T2,T3> console)
+        public static void ConsoleInfo<T1,T2,T3,T4>(this Console<T1,T2,T3,T4> console)
         {
             Console.WriteLine($"{console.Manufacturer}, {console.Year}, {console.Model}");
         }
