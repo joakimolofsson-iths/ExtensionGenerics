@@ -16,6 +16,7 @@ namespace ExtensionGenerics
             var myConsole2 = new Console<string, string, string, string>("Microsoft", "2020", "Xbox X");
             myConsole.ConsoleInfo();
             myConsole2.ConsoleInfo();
+
             myConsole.AddItem(10);
             myConsole.AddItem(20);
             myConsole.AddItem(30);
