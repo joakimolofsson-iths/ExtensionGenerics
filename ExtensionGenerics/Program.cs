@@ -12,8 +12,8 @@ namespace ExtensionGenerics
             myCar.ShowVehicle();
             myBoat.ShowVehicle();
 
-            Console<string, int, string, int> myConsole = new Console<string, int, string, int>("Sony", 2020, "PS5");
-            Console<string, string, string, string> myConsole2 = new Console<string, string, string, string>("Microsoft", "2020", "Xbox X");
+            var myConsole = new Console<string, int, string, int>("Sony", 2020, "PS5");
+            var myConsole2 = new Console<string, string, string, string>("Microsoft", "2020", "Xbox X");
             myConsole.ConsoleInfo();
             myConsole2.ConsoleInfo();
             myConsole.AddItem(10);
